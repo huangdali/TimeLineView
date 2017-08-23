@@ -7,9 +7,17 @@
 ## 导入
 app.build中使用
 
-```
+```java
     compile 'com.jwkj:TimeLineView:v1.0.2'
 ```
+
+## 混淆配置
+```java
+#timelineview
+-keep class com.hdl.timelineview.**{*;}
+-dontwarn com.hdl.timelineview.**
+```
+
 
 ## 版本记录
 
