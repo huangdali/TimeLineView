@@ -8,10 +8,14 @@
 app.build中使用
 
 ```
-    compile 'com.jwkj:TimeLineView:v1.0.1'
+    compile 'com.jwkj:TimeLineView:v1.0.2'
 ```
 
 ## 版本记录
+
+v1.0.2 ([2017.08.23]())
+
+- 【优化】修改包名
 
 v1.0.1 ([2017.08.23]())
 
