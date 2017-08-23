@@ -1,8 +1,11 @@
 # TimeLineView
 
-自定义时间刻度
+自定义时间刻度，带时间轴中选择时间
 
 ![](https://github.com/huangdali/TimeLineView/blob/master/image.png)
+
+## 导入
+app.build中使用
 
 ```
     compile 'com.jwkj:TimeLineView:v1.0.1'
