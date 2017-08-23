@@ -1,5 +1,5 @@
 
-package timerulers.yongxiang.com.timerulerslib.views;
+package com.hdl.timelineview;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

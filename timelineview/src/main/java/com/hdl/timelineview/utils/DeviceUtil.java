@@ -1,5 +1,5 @@
 
-package timerulers.yongxiang.com.timerulerslib.views.utils;
+package com.hdl.timelineview.utils;
 
 import android.content.Context;
 import android.content.res.Resources;

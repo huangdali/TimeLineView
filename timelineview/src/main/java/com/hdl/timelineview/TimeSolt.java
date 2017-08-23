@@ -1,4 +1,4 @@
-package timerulers.yongxiang.com.timerulerslib.views;
+package com.hdl.timelineview;
 
 /**
  * 时间段

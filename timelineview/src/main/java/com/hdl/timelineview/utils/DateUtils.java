@@ -1,4 +1,4 @@
-package timerulers.yongxiang.com.timerulerslib.views.utils;
+package com.hdl.timelineview.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

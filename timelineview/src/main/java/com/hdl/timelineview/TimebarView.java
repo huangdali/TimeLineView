@@ -1,5 +1,5 @@
 
-package timerulers.yongxiang.com.timerulerslib.views;
+package com.hdl.timelineview;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -19,6 +19,8 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hdl.timelineview.utils.DeviceUtil;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,9 +29,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import timerulers.yongxiang.com.timerulerslib.R;
-import timerulers.yongxiang.com.timerulerslib.views.utils.DeviceUtil;
 
 /**
  * 时间轴
@@ -128,15 +127,15 @@ public class TimebarView extends View {
 
     private boolean middleCursorVisible = true;
 
-    private Map<Integer, TimebarTickCriterion> timebarTickCriterionMap = new HashMap<>();
+    private Map<Integer, com.hdl.timelineview.TimebarTickCriterion> timebarTickCriterionMap = new HashMap<>();
 
     private int timebarTickCriterionCount = 5;
 
     private int currentTimebarTickCriterionIndex = 3;
 
-    private List<RecordDataExistTimeSegment> recordDataExistTimeClipsList = new ArrayList<>();
+    private List<com.hdl.timelineview.RecordDataExistTimeSegment> recordDataExistTimeClipsList = new ArrayList<>();
 
-    private Map<Long, List<RecordDataExistTimeSegment>> recordDataExistTimeClipsListMap = new HashMap<>();
+    private Map<Long, List<com.hdl.timelineview.RecordDataExistTimeSegment>> recordDataExistTimeClipsListMap = new HashMap<>();
 
     private ScaleGestureDetector scaleGestureDetector;
     /**
@@ -203,7 +202,7 @@ public class TimebarView extends View {
     private static final int MOVEING = 0x001;
     private static final int ACTION_UP = MOVEING + 1;
     private int idTag;
-    private OnSelectedTimeListener onSelectedTimeListener;
+    private com.hdl.timelineview.OnSelectedTimeListener onSelectedTimeListener;
     Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -257,7 +256,7 @@ public class TimebarView extends View {
     }
 
 
-    public List<RecordDataExistTimeSegment> getRecordDataExistTimeClipsList() {
+    public List<com.hdl.timelineview.RecordDataExistTimeSegment> getRecordDataExistTimeClipsList() {
         return recordDataExistTimeClipsList;
     }
 
@@ -266,7 +265,7 @@ public class TimebarView extends View {
      *
      * @param onSelectedTimeListener
      */
-    public void setOnSelectedTimeListener(OnSelectedTimeListener onSelectedTimeListener) {
+    public void setOnSelectedTimeListener(com.hdl.timelineview.OnSelectedTimeListener onSelectedTimeListener) {
         this.onSelectedTimeListener = onSelectedTimeListener;
     }
 
@@ -275,7 +274,7 @@ public class TimebarView extends View {
      *
      * @param recordDataExistTimeClipsList
      */
-    public void setRecordDataExistTimeClipsList(List<RecordDataExistTimeSegment> recordDataExistTimeClipsList) {
+    public void setRecordDataExistTimeClipsList(List<com.hdl.timelineview.RecordDataExistTimeSegment> recordDataExistTimeClipsList) {
         this.recordDataExistTimeClipsList = recordDataExistTimeClipsList;
         arrangeRecordDataExistTimeClipsIntoMap(recordDataExistTimeClipsList);
     }
@@ -308,13 +307,13 @@ public class TimebarView extends View {
         return screenRightTimeInMillisecond;
     }
 
-    private void arrangeRecordDataExistTimeClipsIntoMap(List<RecordDataExistTimeSegment> clipsList) {
+    private void arrangeRecordDataExistTimeClipsIntoMap(List<com.hdl.timelineview.RecordDataExistTimeSegment> clipsList) {
         recordDataExistTimeClipsListMap = new HashMap<>();
 
         if (clipsList != null) {
-            for (RecordDataExistTimeSegment clipItem : clipsList) {
+            for (com.hdl.timelineview.RecordDataExistTimeSegment clipItem : clipsList) {
                 for (Long dateZeroOClockItem : clipItem.getCoverDateZeroOClockList()) {
-                    List<RecordDataExistTimeSegment> list = null;
+                    List<com.hdl.timelineview.RecordDataExistTimeSegment> list = null;
                     if ((list = recordDataExistTimeClipsListMap.get(dateZeroOClockItem)) == null) {
                         list = new ArrayList<>();
                         recordDataExistTimeClipsListMap.put(dateZeroOClockItem, list);
@@ -369,20 +368,20 @@ public class TimebarView extends View {
 
     private void init(AttributeSet attrs, int defStyleAttr) {
         path = new Path();
-        TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.TimebarView, defStyleAttr, 0);
+        TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, com.hdl.timelineview.R.styleable.TimebarView, defStyleAttr, 0);
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
-            if (attr == R.styleable.TimebarView_middleCursorColor) {
+            if (attr == com.hdl.timelineview.R.styleable.TimebarView_middleCursorColor) {
                 middleCursorColor = a.getColor(attr, Color.RED);
 
-            } else if (attr == R.styleable.TimebarView_recordBackgroundColor) {// 默认颜色设置为橘黄色
+            } else if (attr == com.hdl.timelineview.R.styleable.TimebarView_recordBackgroundColor) {// 默认颜色设置为橘黄色
                 recordBackgroundColor = a.getColor(attr, Color.argb(200, 251, 180, 76));
 
-            } else if (attr == R.styleable.TimebarView_recordTextColor) {// 默认颜色设置为黑色
+            } else if (attr == com.hdl.timelineview.R.styleable.TimebarView_recordTextColor) {// 默认颜色设置为黑色
                 textColor = a.getColor(attr, Color.GRAY);
 
-            } else if (attr == R.styleable.TimebarView_timebarColor) {// 默认颜色设置为黑色
+            } else if (attr == com.hdl.timelineview.R.styleable.TimebarView_timebarColor) {// 默认颜色设置为黑色
                 linesColor = a.getColor(attr, Color.GRAY);
 
             }
@@ -597,7 +596,7 @@ public class TimebarView extends View {
 
 
     private void initTimebarTickCriterionMap() {
-        TimebarTickCriterion t0 = new TimebarTickCriterion();
+        com.hdl.timelineview.TimebarTickCriterion t0 = new com.hdl.timelineview.TimebarTickCriterion();
         t0.setTotalSecondsInOneScreen(10 * 60);
         t0.setKeyTickInSecond(1 * 60);
         t0.setMinTickInSecond(6);
@@ -613,7 +612,7 @@ public class TimebarView extends View {
         t1.setViewLength((int) ((float) screenWidth * WHOLE_TIMEBAR_TOTAL_SECONDS / (float) t1.getTotalSecondsInOneScreen()));
         timebarTickCriterionMap.put(1, t1);*/
 
-        TimebarTickCriterion t1 = new TimebarTickCriterion();
+        com.hdl.timelineview.TimebarTickCriterion t1 = new com.hdl.timelineview.TimebarTickCriterion();
         t1.setTotalSecondsInOneScreen(6 * 60);
         t1.setKeyTickInSecond(60);
         t1.setMinTickInSecond(6);
@@ -628,7 +627,7 @@ public class TimebarView extends View {
         t2.setDataPattern("HH:mm");
         t2.setViewLength((int) ((float) screenWidth * WHOLE_TIMEBAR_TOTAL_SECONDS / (float) t2.getTotalSecondsInOneScreen()));
         timebarTickCriterionMap.put(2, t2);*/
-        TimebarTickCriterion t2 = new TimebarTickCriterion();
+        com.hdl.timelineview.TimebarTickCriterion t2 = new com.hdl.timelineview.TimebarTickCriterion();
         t2.setTotalSecondsInOneScreen(1 * 60 * 60);
         t2.setKeyTickInSecond(10 * 60);
         t2.setMinTickInSecond(1 * 60);
@@ -644,7 +643,7 @@ public class TimebarView extends View {
         t3.setViewLength((int) ((float) screenWidth * WHOLE_TIMEBAR_TOTAL_SECONDS / (float) t3.getTotalSecondsInOneScreen()));
         timebarTickCriterionMap.put(3, t3);*/
 
-        TimebarTickCriterion t3 = new TimebarTickCriterion();
+        com.hdl.timelineview.TimebarTickCriterion t3 = new com.hdl.timelineview.TimebarTickCriterion();
         t3.setTotalSecondsInOneScreen(30 * 60 * 60);
         t3.setKeyTickInSecond(6 * 60 * 60);
         t3.setMinTickInSecond(60 * 60);
@@ -652,7 +651,7 @@ public class TimebarView extends View {
         t3.setViewLength((int) ((float) screenWidth * WHOLE_TIMEBAR_TOTAL_SECONDS / (float) t3.getTotalSecondsInOneScreen()));
         timebarTickCriterionMap.put(3, t3);
 
-        TimebarTickCriterion t4 = new TimebarTickCriterion();
+        com.hdl.timelineview.TimebarTickCriterion t4 = new com.hdl.timelineview.TimebarTickCriterion();
         t4.setTotalSecondsInOneScreen(6 * 24 * 60 * 60);
         t4.setKeyTickInSecond(24 * 60 * 60);
         t4.setMinTickInSecond(2 * 60 * 60);
@@ -892,7 +891,7 @@ public class TimebarView extends View {
             try {
 
                 startDate = zeroTimeFormat.parse(zeroTimeString);
-                List<RecordDataExistTimeSegment> startList = recordDataExistTimeClipsListMap.get(startDate.getTime());
+                List<com.hdl.timelineview.RecordDataExistTimeSegment> startList = recordDataExistTimeClipsListMap.get(startDate.getTime());
                 if (startList == null) {
                     int afterFindDays = 1;
                     long findTimeInMilliseconds = startDate.getTime();
@@ -1441,7 +1440,7 @@ public class TimebarView extends View {
     /*判断是否有录像*/
     private boolean checkHasVideo() {
         if (recordDataExistTimeClipsList != null && recordDataExistTimeClipsList.size() > 0) {
-            for (RecordDataExistTimeSegment recordInfo : recordDataExistTimeClipsList) {
+            for (com.hdl.timelineview.RecordDataExistTimeSegment recordInfo : recordDataExistTimeClipsList) {
                 if (recordInfo.getStartTimeInMillisecond() <= currentTimeInMillisecond
                         && currentTimeInMillisecond <= recordInfo.getEndTimeInMillisecond())
                     return true;

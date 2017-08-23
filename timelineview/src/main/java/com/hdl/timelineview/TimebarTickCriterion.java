@@ -1,5 +1,5 @@
 
-package timerulers.yongxiang.com.timerulerslib.views;
+package com.hdl.timelineview;
 
 public class TimebarTickCriterion {
 
