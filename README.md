@@ -1,5 +1,10 @@
 # TimeLineView
 
+
+> 出于效率考虑已经重写，此项目已经迁移至：https://github.com/huangdali/TimeRuler
+
+
+
 自定义时间刻度，带时间轴中选择时间
 
 ![](https://github.com/huangdali/TimeLineView/blob/master/image.png)
